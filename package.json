@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode=development",
-    "prod" : "webpack --mode=production",
-    "watch" : "webpack --watch"
+    "prod": "webpack --mode=production",
+    "watch": "webpack --watch",
+    "server": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,13 @@
     "webpack-cli": "^4.5.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/vue-fontawesome": "^2.0.2",
+    "chart.js": "^2.9.4",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "session": "^0.1.0",
     "vue": "^2.6.12"
   }
 }

@@ -2,6 +2,7 @@ const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 module.exports={
+    mode:'development',
     entry:path.join(__dirname, "app.js"),
     output:{
         filename:'dist.js',
@@ -30,7 +31,8 @@ module.exports={
     resolve:{
         alias:{
             "vue$" : "vue/dist/vue.esm.js",
-            "@" : path.join(__dirname, 'src/')
+            "@" : path.join(__dirname, 'src/'),
+            "&" : path.join(__dirname, 'src/components/sections/')
         },
         extensions:["*", '.js', '.vue', '.json']
     },

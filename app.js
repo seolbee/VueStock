@@ -1,17 +1,23 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import MainApp from '@/MainApp';
+import MainComponent from '@/components/MainComponent';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {faHome, faChartBar,faEllipsisV} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 
 import './app.css';
 
 Vue.use(Router);
+library.add(faHome, faChartBar, faEllipsisV);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 const router = new Router({
     routes:[
         {
             path:'/',
             name:'main-page',
-            component: "",
+            component: MainComponent,
         }
     ]
 })
