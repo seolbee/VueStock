@@ -1,9 +1,26 @@
 <template>
-    <h1>메인페이지 입니다.</h1>
+    <div class="main">
+        <line-chart height="400" width="600"></line-chart>
+    </div>
 </template>
 <script>
+import Chart from './ChartComponent';
 export default {
-    name:'MainComponent'
+    name:'MainComponent',
+    components:{
+        'line-chart':Chart
+    },
+    data(){
+        return {
+        
+        }
+    },
+    methods:{
+
+    },
+    mounted(){
+        
+    }
 }
 </script>
 <style scoped>

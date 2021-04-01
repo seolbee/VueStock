@@ -1,6 +1,6 @@
 <template>
     <header>
-        <form>
+        <form class="search">
             <input type="text" placeholder="검색">
         </form>
         <div class="users">
@@ -18,11 +18,19 @@ export default {
         width: 100%;
         display: flex;
         height: 60px;
+        justify-content: space-between;
+        align-items:center;
+        padding: 0 15px;
+    }
+
+    .search > input{
+        padding: 5px;
+        border:none;
     }
 
     .users > img{
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
     }
 </style>
