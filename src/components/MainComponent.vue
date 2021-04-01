@@ -1,6 +1,7 @@
 <template>
-    <div class="main">
-        <line-chart height="400" width="600"></line-chart>
+    <div id="main">
+        <line-chart :height="200" :width="600"></line-chart>
+        <line-chart :height="400" :width="600"></line-chart>
     </div>
 </template>
 <script>
