@@ -15,13 +15,7 @@ function getStock(){
     });
 }
 
-async function loadStock(){
-    let stock = await getStock();
-    return stock;
-}
-
 module.exports={
     getStock,
-    stockList:[],
-    loadStock
+    stockList:[]
 }

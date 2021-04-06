@@ -14,17 +14,16 @@ export default {
     },
     data(){
         return {
-            stock:{}
+            stock:{},
+            timeConclude:[]
         }
     },
     methods:{
-        async getStock(){
-            this.stock = await axios.get('/stock');
-            console.log(this.stock);
-        }
+
     },
-    mounted(){
-        this.getStock();
+    async mounted(){
+        this.stock = await axios.get('/stock');
+        console.log(this.stock.data);
     }
 }
 </script>

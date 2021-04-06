@@ -23,8 +23,8 @@ app.get("/", (req, res)=>{
 });
 
 app.get('/stock', async (req, res)=>{
-    let data = await loadStock();
-    res.json(data);
+    let data = JSON.parse(await loadStock());
+    res.json(data['stockprice']);
 });
 
 server.listen(9000, ()=>{

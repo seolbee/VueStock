@@ -5,16 +5,16 @@ export default {
     extends:Line,
     data(){
         return {
-            data:{
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: 'color',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: 'rgba(110, 136, 232, 0.7)',
-                    borderColor: 'rgba(110, 136, 232, 1)',
-                    borderWidth: 1
-                }]
-            },
+            // data:{
+            //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            //     datasets: [{
+            //         label: 'color',
+            //         data: [12, 19, 3, 5, 2, 3],
+            //         backgroundColor: 'rgba(110, 136, 232, 0.7)',
+            //         borderColor: 'rgba(110, 136, 232, 1)',
+            //         borderWidth: 1
+            //     }]
+            // },
             options: {
                 responsive:false,
                 scales: {
