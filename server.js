@@ -1,11 +1,11 @@
 const path = require("path");
 const http = require('http');
 const express = require('express');
-const {getStock} = require('./stock');
+const {makeStock} = require('./stock');
 const bodyParser = require("body-parser");
 const app = express();
 async function loadStock(){
-    let stock = await getStock();
+    let stock = await makeStock();
     return stock;
 }
 
@@ -23,8 +23,8 @@ app.get("/", (req, res)=>{
 });
 
 app.get('/stock', async (req, res)=>{
-    let data = JSON.parse(await loadStock());
-    res.json(data['stockprice']);
+    let data = await loadStock();
+    res.json(data);
 });
 
 server.listen(9000, ()=>{

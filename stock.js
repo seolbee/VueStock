@@ -9,13 +9,23 @@ const option = {
 function getStock(){
     return new Promise((resolve, rej)=>{
         request(option, (res, err, body)=>{
-            let json = xml.xml2json(body, {compact: true, spaces:4});
-            resolve(json);
-        })
+            let json = JSON.parse(xml.xml2json(body, {compact: true, spaces:4}));
+            resolve(json.stockprice);
+        });
     });
+}
+
+async function makeStock(){
+    let {TBL_DailyStock : dailyStockList, TBL_StockInfo : info, TBL_TimeConclude : timeStockList} = await getStock();
+    let stock = {
+        info : info._attributes,
+        dailyStockList : dailyStockList.DailyStock,
+        timeStockList : timeStockList.TBL_TimeConclude
+    };
+    return stock;
 }
 
 module.exports={
     getStock,
-    stockList:[]
+    makeStock
 }

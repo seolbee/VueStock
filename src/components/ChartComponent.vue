@@ -3,8 +3,10 @@ import {Line} from 'vue-chartjs';
 export default {
     name:'ChartComponent',
     extends:Line,
+    props:['data'],
     data(){
         return {
+            datasets:this.data,
             // data:{
             //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
             //     datasets: [{
@@ -31,6 +33,7 @@ export default {
         
     },
     mounted(){
+        console.log(this.datasets);
         this.renderChart(this.data, this.options);
     }
 }
