@@ -27,11 +27,12 @@ export default {
     },
     async mounted(){
         this.json = (await axios.get('/stock')).data;
-        let moneyData = this.json.timeStockList.map(e=> e['_attributes'].buyprice.parseNum()).reverse()
+        console.log(this.json);
+        let moneyData = this.json.dailyStockList.map(e=> e['_attributes'].day_EndPrice.parseNum()).reverse();
         this.chartDatas = {
             max : this.json.info.High52,
-            min : this.json.info.Low52,
-            labels : this.json.timeStockList.map(e=> e['_attributes'].time).reverse(),
+            min : this.json.info.LowJuka,
+            labels : this.json.dailyStockList.map(e=> e['_attributes'].day_Date).reverse(),
             dataset:[
                 {
                     label: this.json.info.JongName,

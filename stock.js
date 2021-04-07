@@ -29,3 +29,5 @@ module.exports={
     getStock,
     makeStock
 }
+
+//https://polling.finance.naver.com/api/realtime?query=SERVICE_ITEM:068270|SERVICE_RECENT_ITEM:005930
