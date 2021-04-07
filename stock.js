@@ -1,17 +1,20 @@
 const request = require('request-promise-native');
-const xml = require('xml-js');
+const iconv = require('iconv-lite');
 const option = {
-    uri:"http://asp1.krx.co.kr/servlet/krx.asp.XMLSise",
+    uri:"https://polling.finance.naver.com/api/realtime?query=SERVICE_ITEM:068270|SERVICE_RECENT_ITEM:005930https://polling.finance.naver.com/api/realtime?query=SERVICE_ITEM:068270|SERVICE_RECENT_ITEM:005930https://polling.finance.naver.com/api/realtime?query=SERVICE_ITEM:068270|SERVICE_RECENT_ITEM:005930https://polling.finance.naver.com/api/realtime",
     qs:{
-        code : "035420"
-    }
+        query : "SERVICE_ITEM:068270|SERVICE_RECENT_ITEM:005930"
+    },
+    encoding:null
 }
 function getStock(){
-    return new Promise((resolve, rej)=>{
-        request(option, (res, err, body)=>{
-            let json = JSON.parse(xml.xml2json(body, {compact: true, spaces:4}));
-            resolve(json.stockprice);
-        });
+    // return new Promise((resolve, rej)=>{
+        
+    // });
+
+    request(option, (res, err, body)=>{
+        const result = iconv.decode(body, 'EUC-KR');
+        console.log(result);
     });
 }
 
@@ -24,6 +27,8 @@ async function makeStock(){
     };
     return stock;
 }
+
+setInterval(getStock, 1000)
 
 module.exports={
     getStock,
