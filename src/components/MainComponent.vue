@@ -1,7 +1,6 @@
 <template>
     <div id="main">
-        <line-chart :height="200" :width="600"></line-chart>
-        <line-chart :height="400" :width="600" :data="this.stock"></line-chart>
+        <line-chart :height="height" :width="width" v-if="json.info != null" :datas="this.chartDatas"></line-chart>
     </div>
 </template>
 <script>
@@ -14,16 +13,35 @@ export default {
     },
     data(){
         return {
-            stock:{},
-            timeConclude:[]
+            json:{},
+            chartDatas:{},
+            width:600,
+            height:400
         }
     },
     methods:{
 
     },
+    watch:{
+
+    },
     async mounted(){
-        this.stock = await axios.get('/stock');
-        console.log(this.stock.data);
+        this.json = (await axios.get('/stock')).data;
+        let moneyData = this.json.timeStockList.map(e=> e['_attributes'].buyprice.parseNum()).reverse()
+        this.chartDatas = {
+            max : this.json.info.High52,
+            min : this.json.info.Low52,
+            labels : this.json.timeStockList.map(e=> e['_attributes'].time).reverse(),
+            dataset:[
+                {
+                    label: this.json.info.JongName,
+                    data: moneyData,
+                    backgroundColor: 'rgba(110, 136, 232, 0.7)',
+                    borderColor: 'rgba(110, 136, 232, 1)',
+                    borderWidth: 1
+                }
+            ]
+        }
     }
 }
 </script>

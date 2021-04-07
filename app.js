@@ -12,6 +12,10 @@ Vue.use(Router);
 library.add(faHome, faChartBar, faEllipsisV);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
+String.prototype.parseNum = function(){
+    return parseInt(this.replace(",", ""))
+}
+
 const router = new Router({
     routes:[
         {
