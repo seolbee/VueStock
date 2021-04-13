@@ -1,8 +1,8 @@
 <template>
     <div class="container">
-        <stock-nav></stock-nav>
+        <stock-nav :style="{'display':'none'}"></stock-nav>
         <div class="main">
-            <stock-header></stock-header>
+            <stock-header :style="{'display':'none'}"></stock-header>
             <router-view></router-view>
         </div>
     </div>
@@ -25,5 +25,6 @@ export default {
 
     .main{
         width: 100%;
+        background-color:#f3f5fd;
     }
 </style>

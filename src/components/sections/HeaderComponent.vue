@@ -4,7 +4,8 @@
             <input type="text" placeholder="검색">
         </form>
         <div class="users">
-            <img src="image/users.png" alt="img">
+            <router-link to="/login">로그인</router-link>
+            <router-link to="/register">회원가입</router-link>
         </div>
     </header>
 </template>

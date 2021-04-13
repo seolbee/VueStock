@@ -1,29 +1,44 @@
 <template>
-    <div id="login">
-        <form @submit.prevent="login">
+    <div id="register">
+        <form @submit.prevent="registe">
             <div class="title-box">
                 <h1>Welcome</h1>
                 <p>Enter your credentials to access your account</p>
             </div>
             <div class="input-group">
+                <div class="img-input">
+                    <img src="image/users.png" alt="img" @click="change_img">
+                    <input type="file" @change="get_src" ref="file" accept=".jpg, .jpeg, .png, .gif">
+                </div>
                 <div class="input">
                     <font-awesome-icon :icon="['fas', 'user']"></font-awesome-icon>
                     <input type="text" placeholder="Enter your username">
                 </div>
                 <div class="input">
+                    <font-awesome-icon :icon="['fas', 'phone-alt']"></font-awesome-icon>
+                    <input type="text" placeholder="Enter your phone number ex) 01011112222">
+                </div>
+                <div class="input">
                     <font-awesome-icon :icon="['fas', 'lock']"></font-awesome-icon>
                     <input type="password" placeholder="Enter your password">
                 </div>
+                <div class="input">
+                    <font-awesome-icon :icon="['fas', 'lock']"></font-awesome-icon>
+                    <input type="password" placeholder="Enter your password one more">
+                </div>
             </div>
-            <button>Sign in</button>
+            <button>Sign up</button>
         </form>
     </div>
 </template>
 <script>
 export default {
     methods:{
-        login(){
-
+        change_img(){
+            this.$refs.file.click();
+        },
+        get_src(){
+            console.log(this.$refs.file.files[0]);
         }
     }
 }
@@ -35,6 +50,16 @@ input{
     display: flex;
     flex: 15;
     font-size: 13px;
+}
+
+.img-input{
+    width: 100%;   
+    text-align: center;
+}
+
+img{
+    width: 100px;
+    border-radius: 50%;
 }
 
 .input{
@@ -74,7 +99,7 @@ form{
     margin: 20px 0;
 } */
 
-#login{
+#register{
     height: 100vh;
 }
 

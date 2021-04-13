@@ -6,7 +6,7 @@
             </router-link>
         </div>
         <ul>
-            <li><router-link to="/"><font-awesome-icon :icon="['fas', 'home']"></font-awesome-icon>홈으로</router-link></li>
+            <li><router-link to="/"><font-awesome-icon :icon="['fas', 'home']"></font-awesome-icon>HOME</router-link></li>
         </ul>
     </nav>
 </template>

@@ -16,3 +16,11 @@ html, body{
 a{
     text-decoration: none;
 }
+
+button{
+    border: none;
+}
+
+input[type="file"]{
+    display: none;
+}
