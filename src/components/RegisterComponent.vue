@@ -7,24 +7,28 @@
             </div>
             <div class="input-group">
                 <div class="img-input">
-                    <img src="image/users.png" alt="img" @click="change_img">
+                    <img src="image/users.png" alt="img" @click="change_img" ref="userImg">
                     <input type="file" @change="get_src" ref="file" accept=".jpg, .jpeg, .png, .gif">
                 </div>
-                <div class="input">
+                <div class="input" ref="id">
+                    <font-awesome-icon :icon="['far', 'id-card']"></font-awesome-icon>
+                    <input type="text" placeholder="Enter your userid" v-model="user.id">
+                </div>
+                <div class="input" ref="name">
                     <font-awesome-icon :icon="['fas', 'user']"></font-awesome-icon>
-                    <input type="text" placeholder="Enter your username">
+                    <input type="text" placeholder="Enter your username" v-model="user.name">
                 </div>
-                <div class="input">
+                <div class="input" ref="phone">
                     <font-awesome-icon :icon="['fas', 'phone-alt']"></font-awesome-icon>
-                    <input type="text" placeholder="Enter your phone number ex) 01011112222">
+                    <input type="text" placeholder="Enter your phone number ex) 01011112222" v-model="user.phone">
                 </div>
-                <div class="input">
+                <div class="input" ref="password">
                     <font-awesome-icon :icon="['fas', 'lock']"></font-awesome-icon>
-                    <input type="password" placeholder="Enter your password">
+                    <input type="password" placeholder="Enter your password" v-model="user.password" >
                 </div>
-                <div class="input">
+                <div class="input" ref="passwordConfirm">
                     <font-awesome-icon :icon="['fas', 'lock']"></font-awesome-icon>
-                    <input type="password" placeholder="Enter your password one more">
+                    <input type="password" placeholder="Enter your password one more" v-model="user.passwordConfirm">
                 </div>
             </div>
             <button>Sign up</button>
@@ -33,12 +37,43 @@
 </template>
 <script>
 export default {
+    data(){
+        return {
+            user:{
+                name : '',
+                id: '',
+                phone:'',
+                password:'',
+                passwordConfirm:'',
+                img:''
+            }
+        }
+    },
     methods:{
         change_img(){
             this.$refs.file.click();
         },
         get_src(){
-            console.log(this.$refs.file.files[0]);
+            this.user.img = this.$refs.file.files[0];
+            this.get_image(this.user.img);
+        },
+        get_image(file){
+            let img = this.$refs.userImg;
+            const reader = new FileReader();
+            reader.onload = function(e){
+                img.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    },
+    watch:{
+        user:{
+            deep:true,
+            handler(n, o){
+                if(this.user.id === ""){
+                    
+                }
+            }
         }
     }
 }

@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-regular-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/vue-fontawesome": "^2.0.2",
     "apexcharts": "^3.26.0",
@@ -37,6 +38,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "iconv-lite": "^0.6.2",
+    "mysql2": "^2.2.5",
     "request": "^2.88.2",
     "request-promise-native": "^1.0.9",
     "session": "^0.1.0",

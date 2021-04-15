@@ -7,7 +7,11 @@
                     <line-chart :height="200" :width="(this.width/2)"></line-chart>
                 </div>
                 <line-chart :height="height" :width="width"></line-chart> -->
-                <apexchart :width="this.width" :height="this.height" type="line" :options="options" :series="series"></apexchart>
+                <div class="small-chart">
+                    <apex-chart :width="(this.width / 2)" :height="200" :options="options" :series="series"/>
+                    <apex-chart :width="(this.width / 2)" :height="200" :options="options" :series="series"/>
+                </div>
+                <apex-chart :width="this.width" :height="this.height" type="line" :options="options" :series="series"/>
             </div>
             <popular ref="popularList"></popular>
         </div>
@@ -19,7 +23,6 @@ import PopularComponent from './PopularListComponent.vue';
 export default {
     name:'MainComponent',
     components:{
-        // 'line-chart':Chart,
         'popular' : PopularComponent
     },
     // data(){
@@ -35,7 +38,10 @@ export default {
         return {
             options: {
                 chart: {
-                    id: 'vuechart-example'
+                    id: 'vuechart-example',
+                    toolbar:{
+                        show:false
+                    }
                 },
                 xaxis: {
                     categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
@@ -51,18 +57,18 @@ export default {
     },
     methods:{
         mainChartWidth(){
-            this.width = window.innerWidth - (this.$refs.popularList.$el.offsetWidth + 250);
+            this.width = window.innerWidth - (this.$refs.popularList.$el.offsetWidth + 260);
         },
         mainChartHeight(){
-            this.height = width.innerHeight - 80;
+            this.height = window.innerHeight - 320;
         }
     },
     mounted(){
         window.addEventListener('resize', this.mainChartWidth);
         window.addEventListener('resize', this.mainChartHeight);
+
         this.mainChartWidth();
         this.mainChartHeight();
-        console.log(this.width, this.height);
     }
 }
 </script>

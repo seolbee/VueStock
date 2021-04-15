@@ -16,7 +16,7 @@ function getRank(){
                 let name = $(`table.type_5 tr:nth-child(${i+3}) td a`).html();
                 let price = $(`table.type_5 tr:nth-child(${i+3}) td:nth-child(4)`).html();
                 let yest = $(`table.type_5 tr:nth-child(${i+3}) td:nth-child(5) > span`).html().replace(/[\n|\t]/gi, "");
-                let yestIncrease = $(`table.type_5 tr:nth-child(${i+3}) td:nth-child(5) > img`).attr('alt') === "상승" ? 'pluse' : 'miuse';
+                let yestIncrease = $(`table.type_5 tr:nth-child(${i+3}) td:nth-child(5) > img`).attr('src').search(/up/g) > 0 ? 'pluse' : 'miuse';
                 let startPrice = $(`table.type_5 tr:nth-child(${i+3}) td:nth-child(8)`).html();
                 let percent = $(`table.type_5 tr:nth-child(${i+3}) td:nth-child(6) > span`).html().replace(/[\n|\t]/gi, "");
                 arr.push({name, price, yest, yestIncrease, startPrice, percent});

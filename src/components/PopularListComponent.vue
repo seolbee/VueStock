@@ -1,12 +1,10 @@
 <template>
-    <div class="popular-list-box">
-        <div class="popular-list" v-if="this.arr !== []">
-            <div v-for="item in this.arr" :key="item.name" class="popular">
-                <span>{{item.name}}</span>
-                <span>{{item.price}}</span>
-                <span :class="item.yestIncrease">{{item.yest}}</span>
-                <span :class="item.yestIncrease">{{item.percent}}</span>
-            </div>
+    <div class="popular-list" v-if="this.arr !== []">
+        <div v-for="item in this.arr" :key="item.name" class="popular">
+            <span>{{item.name}}</span>
+            <span>{{item.price}}</span>
+            <span :class="item.yestIncrease">{{item.yest}}</span>
+            <span :class="item.yestIncrease">{{item.percent}}</span>
         </div>
     </div>
 </template>
@@ -36,6 +34,7 @@ export default {
 <style scoped>
     .popular-list{
         width: 20vw;
+        height: 40vh;
         display: grid;
         grid-auto-rows: 50px;
         grid-gap: 20px;

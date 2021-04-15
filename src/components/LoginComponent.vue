@@ -3,7 +3,7 @@
         <form @submit.prevent="login">
             <div class="title-box">
                 <h1>Welcome</h1>
-                <p>Enter your credentials to access your account</p>
+                <p class="span">Enter your credentials to access your account</p>
             </div>
             <div class="input-group">
                 <div class="input">
@@ -16,6 +16,7 @@
                 </div>
             </div>
             <button>Sign in</button>
+            <p class='span'>If you are not a member <router-link to="/register">click me!</router-link></p>
         </form>
     </div>
 </template>
@@ -98,8 +99,13 @@ button{
     font-size: 30px;
 }
 
-.title-box > p{
+.span{
     font-size: 12px;
     color: #ccc;
+}
+
+form > .span{
+    text-align: center;
+    margin-top: 10px;
 }
 </style>

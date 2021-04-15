@@ -9,6 +9,7 @@ import RegisterComponent from '@/components/RegisterComponent';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faHome, faChartBar,faEllipsisV, faUser, faLock, faPhoneAlt} from '@fortawesome/free-solid-svg-icons';
+import {faIdCard} from '@fortawesome/free-regular-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 
 import './app.css';
@@ -16,10 +17,10 @@ import './app.css';
 Vue.use(Router);
 Vue.use(VueApexCharts);
 
-library.add(faHome, faChartBar, faEllipsisV, faUser, faLock, faPhoneAlt);
+library.add(faHome, faChartBar, faEllipsisV, faUser, faLock, faPhoneAlt, faIdCard);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
-Vue.component('apexchart', VueApexCharts);
+Vue.component('apex-chart', VueApexCharts);
 
 String.prototype.parseNum = function(){
     return parseInt(this.replace(",", ""))

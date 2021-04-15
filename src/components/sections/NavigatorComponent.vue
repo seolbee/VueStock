@@ -38,14 +38,20 @@ export default {
 
     ul > li{
         padding-left: 20px;
+        
     }
 
     ul > li > a{
         font-size: 18px;
+        color:#c6c8d0;
     }
 
     ul > li > a > svg{
-        margin-right: 10px;
+        margin-right: 10px;   
+    }
+
+    ul > li > a > svg > path{
+        color:#c6c8d0;
     }
 </style>
 
