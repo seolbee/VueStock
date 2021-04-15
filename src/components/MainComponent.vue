@@ -1,51 +1,77 @@
 <template>
     <div id="main">
-        <!-- <line-chart :height="height" :width="width" v-if="json.info != null" :datas="this.chartDatas"></line-chart> -->
+        <div class="content">
+            <div class="chart-box">
+                <!-- <div class="small-chart">
+                    <line-chart :height="200" :width="(this.width/2)"></line-chart>
+                    <line-chart :height="200" :width="(this.width/2)"></line-chart>
+                </div>
+                <line-chart :height="height" :width="width"></line-chart> -->
+                <apexchart :width="this.width" :height="this.height" type="line" :options="options" :series="series"></apexchart>
+            </div>
+            <popular ref="popularList"></popular>
+        </div>
     </div>
 </template>
 <script>
-// import Chart from './ChartComponent';
 import axios from 'axios';
+import PopularComponent from './PopularListComponent.vue';
 export default {
     name:'MainComponent',
     components:{
-        // 'line-chart':Chart
+        // 'line-chart':Chart,
+        'popular' : PopularComponent
     },
-    data(){
+    // data(){
+    //     return {
+    //         chartDatas:{},
+    //         popular:[],
+    //         width:700,
+    //         height:500
+    //     }
+    // },
+
+    data: function() {
         return {
-            json:{},
-            chartDatas:{},
-            width:600,
-            height:400
+            options: {
+                chart: {
+                    id: 'vuechart-example'
+                },
+                xaxis: {
+                    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+                }
+            },
+            series: [{
+                name: 'series-1',
+                data: [30, 40, 45, 50, 49, 60, 70, 91]
+            }],
+            width : 600,
+            height : 400
         }
     },
     methods:{
-
+        mainChartWidth(){
+            this.width = window.innerWidth - (this.$refs.popularList.$el.offsetWidth + 250);
+        },
+        mainChartHeight(){
+            this.height = width.innerHeight - 80;
+        }
     },
-    watch:{
-
-    },
-    async mounted(){
-        // this.json = (await axios.get('/stock')).data;
-        // console.log(this.json);
-        // let moneyData = this.json.dailyStockList.map(e=> e['_attributes'].day_EndPrice.parseNum()).reverse();
-        // this.chartDatas = {
-        //     max : this.json.info.High52,
-        //     min : this.json.info.LowJuka,
-        //     labels : this.json.dailyStockList.map(e=> e['_attributes'].day_Date).reverse(),
-        //     dataset:[
-        //         {
-        //             label: this.json.info.JongName,
-        //             data: moneyData,
-        //             backgroundColor: 'rgba(110, 136, 232, 0.7)',
-        //             borderColor: 'rgba(110, 136, 232, 1)',
-        //             borderWidth: 1
-        //         }
-        //     ]
-        // }
+    mounted(){
+        window.addEventListener('resize', this.mainChartWidth);
+        window.addEventListener('resize', this.mainChartHeight);
+        this.mainChartWidth();
+        this.mainChartHeight();
+        console.log(this.width, this.height);
     }
 }
 </script>
 <style scoped>
+    .content{
+        display: flex;
+    }
 
+    .small-chart{
+        display: flex;
+    }
 </style>

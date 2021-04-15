@@ -1,7 +1,8 @@
 const path = require("path");
 const http = require('http');
 const express = require('express');
-// const {makeStock} = require('./stock');
+// const {makeStock} = require('./parser/stock');
+const {getRank} = require('./parser/popular');
 const bodyParser = require("body-parser");
 const app = express();
 // async function loadStock(){
@@ -20,6 +21,11 @@ app.use(bodyParser.json());
 
 app.get("/", (req, res)=>{
     res.render("main");
+});
+
+app.get("/popular", async (req, res)=>{
+    let rankArr = await getRank();
+    res.json(rankArr);
 });
 
 // app.get('/stock', async (req, res)=>{

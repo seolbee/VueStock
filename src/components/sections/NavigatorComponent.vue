@@ -17,7 +17,7 @@ export default {
 </script>
 <style scoped>
     nav{
-        width: 200px;
+        width: 250px;
         height: 100vh;
         background-color: #f3f5fd;
     }

@@ -18,7 +18,7 @@ export default {
     header{
         width: 100%;
         display: flex;
-        height: 60px;
+        height: 80px;
         justify-content: space-between;
         align-items:center;
         padding: 0 15px;
