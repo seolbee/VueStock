@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import MainApp from '@/MainApp';
 import VueApexCharts from 'vue-apexcharts';
+import VueSession from 'vue-session';
 
 import MainComponent from '@/components/MainComponent';
 import LoginComponent from '@/components/LoginComponent';
@@ -13,9 +14,16 @@ import {faIdCard} from '@fortawesome/free-regular-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 
 import './app.css';
+// import requestPromise from 'request-promise-native';
 
 Vue.use(Router);
 Vue.use(VueApexCharts);
+
+const sessionOption = {
+    persist:true
+}
+
+Vue.use(VueSession, sessionOption);
 
 library.add(faHome, faChartBar, faEllipsisV, faUser, faLock, faPhoneAlt, faIdCard);
 

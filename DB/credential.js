@@ -5,6 +5,9 @@ const credential = {
     password:'tmf@030309'
 }
 
+const session = "yydh";
+
 module.exports = {
-    c : credential
+    c : credential,
+    s: session
 }

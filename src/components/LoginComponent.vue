@@ -8,11 +8,11 @@
             <div class="input-group">
                 <div class="input">
                     <font-awesome-icon :icon="['fas', 'user']"></font-awesome-icon>
-                    <input type="text" placeholder="Enter your username">
+                    <input type="text" placeholder="Enter your username" v-model="loginData.id">
                 </div>
                 <div class="input">
                     <font-awesome-icon :icon="['fas', 'lock']"></font-awesome-icon>
-                    <input type="password" placeholder="Enter your password">
+                    <input type="password" placeholder="Enter your password" v-model="loginData.password">
                 </div>
             </div>
             <button>Sign in</button>
@@ -21,10 +21,25 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
+    data(){
+        return {
+            loginData:{
+                id : '',
+                password : ''
+            }
+        }
+    },
     methods:{
         login(){
-
+            axios.post('/login', this.loginData).then(data=>{
+                let result = data.data;
+                alert(result.msg);
+                if(result.success){
+                    this.$router.push('/');
+                } 
+            });
         }
     }
 }

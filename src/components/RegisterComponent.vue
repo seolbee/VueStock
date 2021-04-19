@@ -8,7 +8,7 @@
             <div class="input-group">
                 <div class="img-input">
                     <img src="image/users.png" alt="img" @click="change_img" ref="userImg">
-                    <input type="file" @change="get_src" ref="file" accept=".jpg, .jpeg, .png, .gif">
+                    <input type="file" @change="get_src" ref="file" accept=".jpg, .jpeg, .png, .gif" name="img">
                 </div>
                 <div class="input" ref="id">
                     <font-awesome-icon :icon="['far', 'id-card']"></font-awesome-icon>
@@ -36,6 +36,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
     data(){
         return {
@@ -45,7 +46,7 @@ export default {
                 phone:'',
                 password:'',
                 passwordConfirm:'',
-                img:''
+                img:null
             }
         }
     },
@@ -66,7 +67,16 @@ export default {
             reader.readAsDataURL(file);
         },
         registe(){
-            
+            let formData = new FormData();
+            formData.append('userId', this.user.id);
+            formData.append('username', this.user.name);
+            formData.append('userImg', this.user.img);
+            formData.append('userPhone', this.user.phone);
+            formData.append('userPassword', this.user.password);
+            axios.post('/register', formData, {headers:{'Content-Type' : 'multipart/form-data'}}).then(data=>{
+                alert(data.data.msg);
+                this.$router.push('/login');
+            });
         }
     },
     watch:{

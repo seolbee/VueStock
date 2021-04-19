@@ -27,6 +27,6 @@ export default {
 
     .main{
         width: 100%;
-        /* background-color:#e9edff; */
+        background-color:#e9edff;
     }
 </style>
