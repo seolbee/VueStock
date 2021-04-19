@@ -28,6 +28,10 @@ app.get("/popular", async (req, res)=>{
     res.json(rankArr);
 });
 
+app.post("/register", (req, res)=>{
+    
+});
+
 // app.get('/stock', async (req, res)=>{
 //     let data = await loadStock();
 //     res.json(data);

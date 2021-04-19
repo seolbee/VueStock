@@ -19,7 +19,7 @@ function getRank(){
                 let yestIncrease = $(`table.type_5 tr:nth-child(${i+3}) td:nth-child(5) > img`).attr('src').search(/up/g) > 0 ? 'pluse' : 'miuse';
                 let startPrice = $(`table.type_5 tr:nth-child(${i+3}) td:nth-child(8)`).html();
                 let percent = $(`table.type_5 tr:nth-child(${i+3}) td:nth-child(6) > span`).html().replace(/[\n|\t]/gi, "");
-                arr.push({name, price, yest, yestIncrease, startPrice, percent});
+                arr.push({id:i, name, price, yest, yestIncrease, startPrice, percent});
             }
 
             resolve(arr);

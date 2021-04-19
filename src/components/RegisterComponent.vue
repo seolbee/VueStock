@@ -64,6 +64,9 @@ export default {
                 img.src = e.target.result;
             }
             reader.readAsDataURL(file);
+        },
+        registe(){
+            
         }
     },
     watch:{

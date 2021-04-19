@@ -43,7 +43,7 @@ export default {
 
     ul > li > a{
         font-size: 18px;
-        color:#c6c8d0;
+        color:#393737;
     }
 
     ul > li > a > svg{
@@ -51,7 +51,7 @@ export default {
     }
 
     ul > li > a > svg > path{
-        color:#c6c8d0;
+        color:#393737;
     }
 </style>
 

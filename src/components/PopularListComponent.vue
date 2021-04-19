@@ -1,6 +1,7 @@
 <template>
     <div class="popular-list" v-if="this.arr !== []">
         <div v-for="item in this.arr" :key="item.name" class="popular">
+            <span>{{item.id+1}}</span>
             <span>{{item.name}}</span>
             <span>{{item.price}}</span>
             <span :class="item.yestIncrease">{{item.yest}}</span>
@@ -45,6 +46,9 @@ export default {
         background-color: white;
         box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, .1);
         border-radius: 3px;
+        display: grid;
+        grid-template-columns: 10% 25% 20% 20% 25%;
+        text-align: center;
     }
 
     .pluse{
