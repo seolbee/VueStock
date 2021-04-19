@@ -17,14 +17,13 @@ function getRank(){
                 let price = $(`table.type_5 tr:nth-child(${i+3}) td:nth-child(4)`).html();
                 let yest = $(`table.type_5 tr:nth-child(${i+3}) td:nth-child(5) > span`).html().replace(/[\n|\t]/gi, "");
                 let yestIncrease = null;
-                if($(`table.type_5 tr:nth-child(${i+3}) td:nth-child(5`).children().length() > 1){
+                if($(`table.type_5 tr:nth-child(${i+3}) td:nth-child(5)`).children().length > 1){
                     yestIncrease = $(`table.type_5 tr:nth-child(${i+3}) td:nth-child(5) > img`).attr('src').search(/up/g) > 0 ? 'pluse' : 'miuse';
                 } else {
-                    yestIncrease = false;
+                    yestIncrease = "";
                 }
                 let startPrice = $(`table.type_5 tr:nth-child(${i+3}) td:nth-child(8)`).html();
                 let percent = $(`table.type_5 tr:nth-child(${i+3}) td:nth-child(6) > span`).html().replace(/[\n|\t]/gi, "");
-                console.log(i, name, price, yest, yestIncrease, startPrice, percent)
                 arr.push({id:i, name, price, yest, yestIncrease, startPrice, percent});
             }
 

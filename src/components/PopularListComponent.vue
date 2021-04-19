@@ -2,7 +2,7 @@
     <div class="popular-list" v-if="this.arr !== []">
         <div v-for="item in this.arr" :key="item.name" class="popular">
             <span>{{item.id+1}}</span>
-            <span>{{item.name}}</span>
+            <span class="name">{{item.name}}</span>
             <span>{{item.price}}</span>
             <span :class="item.yestIncrease">{{item.yest}}</span>
             <span :class="item.yestIncrease">{{item.percent}}</span>
