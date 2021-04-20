@@ -11,7 +11,7 @@
                     <apex-chart :width="(this.width / 2)" :height="200" :options="options" :series="series"/>
                     <apex-chart :width="(this.width / 2)" :height="200" :options="options" :series="series"/>
                 </div>
-                <apex-chart :width="this.width" :height="this.height" type="line" :options="options" :series="series"/>
+                <apex-chart :width="this.width" :height="this.height" type="area" :options="options" :series="series"/>
             </div>
             <div class="popular-box">
                 <h1>인기 주식</h1>
@@ -46,8 +46,10 @@ export default {
                         show:false
                     }
                 },
+                colors:['#6e88e8', '#e86e88', '#e8cd6e', '#6ee8ce'],
                 fill:{
-                    colors:['#6e88e8']
+                    type:['gradient'],
+                    colors:['#6e88e8', '#e86e88', '#e8cd6e', '#6ee8ce']
                 },
                 xaxis: {
                     categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]

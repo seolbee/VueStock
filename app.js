@@ -46,7 +46,7 @@ const router = new Router({
             name:'main-page',
             component: MainComponent,
             beforeEnter : (to, from, next)=>{
-                if(Vue.prototype.$session.get("user") === null) next('/login');
+                if(!Vue.prototype.$session.exists()) next('/login');
                 else next();
             }
         },
@@ -55,7 +55,7 @@ const router = new Router({
             name:'chart-page',
             component:ChartComponent,
             beforeEnter : (to, from, next)=>{
-                if(Vue.prototype.$session.get("user") === null) next('/login');
+                if(!Vue.prototype.$session.exists()) next('/login');
                 else next();
             }
         },
