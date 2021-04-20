@@ -37,6 +37,7 @@ export default {
                 let result = data.data;
                 alert(result.msg);
                 if(result.success){
+                    this.$session.set('user', result.session);
                     this.$router.push('/');
                 } 
             });

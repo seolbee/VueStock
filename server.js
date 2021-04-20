@@ -73,11 +73,16 @@ app.post("/login", async (req, res)=>{
     result = await pool.query(sql, [req.body.id, req.body.password]);
     
     if(result[0].length > 0){
-        let session = req.session;
-        session.user = result;
-        console.log(session);
-        res.json({msg:"로그인 완료", success:true});
+        let {idx, userid, name, password, img, phone} = result[0][0];
+        req.session.user = {idx, userid, name, password, img, phone};
+        res.json({msg:"로그인 완료", success:true, session:{userid, name}});
     }
+});
+
+app.get('/logout', (req, res)=>{
+    if(req.session.user === null) return;
+    req.session.destroy();
+    res.redirect('/');
 });
 
 // app.get('/stock', async (req, res)=>{

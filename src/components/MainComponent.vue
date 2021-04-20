@@ -13,7 +13,10 @@
                 </div>
                 <apex-chart :width="this.width" :height="this.height" type="line" :options="options" :series="series"/>
             </div>
-            <popular ref="popularList"></popular>
+            <div class="popular-box">
+                <h1>인기 주식</h1>
+                <popular ref="popularList"></popular>
+            </div>
         </div>
     </div>
 </template>
@@ -43,6 +46,9 @@ export default {
                         show:false
                     }
                 },
+                fill:{
+                    colors:['#6e88e8']
+                },
                 xaxis: {
                     categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
                 }
@@ -66,7 +72,6 @@ export default {
     mounted(){
         window.addEventListener('resize', this.mainChartWidth);
         window.addEventListener('resize', this.mainChartHeight);
-
         this.mainChartWidth();
         this.mainChartHeight();
     }

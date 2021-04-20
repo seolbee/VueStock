@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <!-- <stock-nav :style="{'display':'none'}"></stock-nav> -->
-        <stock-nav></stock-nav>
-        <div class="main">
-            <!-- <stock-header :style="{'display':'none'}"></stock-header> -->
-            <stock-header></stock-header>
+        <stock-nav v-if="this.$session.get('user')"></stock-nav>
+        <!-- <stock-nav></stock-nav> -->
+        <div class="main" :class="!this.$session.get('user') ? 'background' : ''">
+            <stock-header v-if="this.$session.get('user')"></stock-header>
+            <!-- <stock-header></stock-header> -->
             <router-view></router-view>
         </div>
     </div>
@@ -27,6 +27,9 @@ export default {
 
     .main{
         width: 100%;
-        /* background-color:#e9edff; */
+    }
+
+    .background{
+        background-color:#e9edff;
     }
 </style>

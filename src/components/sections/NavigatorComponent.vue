@@ -7,6 +7,7 @@
         </div>
         <ul>
             <li><router-link to="/"><font-awesome-icon :icon="['fas', 'home']"></font-awesome-icon>HOME</router-link></li>
+            <li><router-link to="/chart"><font-awesome-icon :icon="['fas', 'chart-area']"></font-awesome-icon>CHART</router-link></li>
         </ul>
     </nav>
 </template>
@@ -38,7 +39,7 @@ export default {
 
     ul > li{
         padding-left: 20px;
-        
+        margin: 15px 0;   
     }
 
     ul > li > a{
