@@ -58,4 +58,10 @@ export default {
     .miuse{
         color: blue;
     }
+
+    .name{
+        text-overflow:ellipsis;
+        white-space: nowrap;
+        overflow:hidden;
+    }
 </style>

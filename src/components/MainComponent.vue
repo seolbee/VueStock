@@ -8,8 +8,8 @@
                 </div>
                 <line-chart :height="height" :width="width"></line-chart> -->
                 <div class="small-chart">
-                    <apex-chart :width="(this.width / 2)" :height="200" :options="options" :series="series"/>
-                    <apex-chart :width="(this.width / 2)" :height="200" :options="options" :series="series"/>
+                    <apex-chart :width="(this.width / 2)" :height="200" :options="options" type="area" :series="series"/>
+                    <apex-chart :width="(this.width / 2)" :height="200" :options="options" type="area" :series="series"/>
                 </div>
                 <apex-chart :width="this.width" :height="this.height" type="area" :options="options" :series="series"/>
             </div>

@@ -5,12 +5,13 @@
         </form>
         <div class="users">
             <div class="no_auth" v-if="!this.$session.get('user')">
-                <router-link to="/login">로그인</router-link>
-                <router-link to="/register">회원가입</router-link>
+                <router-link to="/login">Login</router-link>
+                <router-link to="/register">sign up</router-link>
             </div>
             <div class="auth" v-else>
-                <span>{{this.$session.get('user').name}}</span>
-                <a href="#" @click="logout">로그아웃</a>
+                <!-- <span>{{this.$session.get('user').name}}</span> -->
+                <img src="/profile/userimg" alt="img">
+                <a href="#" @click="logout">Logout</a>
             </div>
         </div>
     </header>
@@ -44,9 +45,15 @@ export default {
         border:none;
     }
 
-    .users > img{
+    .auth{
+        display: flex;
+        align-items: center;
+    }
+
+    .auth > img{
         width: 40px;
         height: 40px;
         border-radius: 50%;
+        margin-right: 20px;
     }
 </style>

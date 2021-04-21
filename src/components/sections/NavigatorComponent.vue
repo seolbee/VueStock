@@ -45,6 +45,7 @@ export default {
     ul > li > a{
         font-size: 18px;
         color:#393737;
+        font-family: 'Source Code Pro', monospace;
     }
 
     ul > li > a > svg{

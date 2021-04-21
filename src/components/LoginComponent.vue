@@ -8,11 +8,11 @@
             <div class="input-group">
                 <div class="input">
                     <font-awesome-icon :icon="['fas', 'user']"></font-awesome-icon>
-                    <input type="text" placeholder="Enter your username" v-model="loginData.id">
+                    <input type="text" placeholder="Enter your username" v-model="loginData.id" @focus="focusing" @blur="bulring">
                 </div>
                 <div class="input">
                     <font-awesome-icon :icon="['fas', 'lock']"></font-awesome-icon>
-                    <input type="password" placeholder="Enter your password" v-model="loginData.password">
+                    <input type="password" placeholder="Enter your password" v-model="loginData.password" @focus="focusing" @blur="bulring">
                 </div>
             </div>
             <button>Sign in</button>
@@ -41,6 +41,20 @@ export default {
                     this.$router.push('/');
                 } 
             });
+        },
+        focusing(e){
+            e.path[1].classList.add('focus');
+        },
+        bulring(e){
+            e.path[1].classList.remove('focus');
+        }
+    },
+    watch:{
+        loginData :{
+            deep:true,
+            handler(n, o){
+                
+            }
         }
     }
 }
@@ -120,8 +134,17 @@ button{
     color: #ccc;
 }
 
+.span > a{
+    color: #aaa;
+    text-decoration: underline;
+}
+
 form > .span{
     text-align: center;
     margin-top: 10px;
+}
+
+.focus{
+    border: 2px solid #6e88e8;
 }
 </style>

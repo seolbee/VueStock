@@ -8,6 +8,8 @@ const session = require('express-session');
 const {upload} = require("./multer");
 const {pool} = require('./DB/DB');
 const {s} = require('./DB/credential');
+const fs = require('fs');
+const mime = require('mime');
 // async function loadStock(){
 //     let stock = await makeStock();
 //     return stock;
@@ -24,7 +26,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(session({
     resave:false,
-    saveUninitialized:true,
+    saveUninitialized:false,
     secret:s
 }));
 
@@ -45,11 +47,14 @@ app.post("/register", upload.single('userImg'), async (req, res)=>{
         res.json({msg:'중복된 회원이 있습니다.', success:false});
         return;
     }
-    let file = req.file;
-    console.log(file.filename);
+    let filename = '';
+    if(req.file !== undefined){
+        let file = req.file;
+        filename = file.filename;
+    }
     const {userId:id, username:name, userPhone:phone, userPassword:password} = req.body;
     let sql = "INSERT INTO users (userid, name, phone, password, img) VALUES (?, ?, ?, PASSWORD(?), ?)";
-    await pool.query(sql, [id, name, phone, password, file.filename]);
+    await pool.query(sql, [id, name, phone, password, filename]);
     res.json({msg : '회원가입 완료', success:true});
 });
 
@@ -73,9 +78,12 @@ app.post("/login", async (req, res)=>{
     result = await pool.query(sql, [req.body.id, req.body.password]);
     
     if(result[0].length > 0){
-        let {idx, userid, name, password, img, phone} = result[0][0];
-        req.session.user = {idx, userid, name, password, img, phone};
-        res.json({msg:"로그인 완료", success:true, session:{userid, name}});
+        let {idx, userid, name, img, phone} = result[0][0];
+        req.session.user = {idx, userid, name, img, phone};
+        req.session.save(()=>{
+            res.json({msg:"로그인 완료", success:true, session:{userid, name}});
+        });
+        
     }
 });
 
@@ -83,6 +91,20 @@ app.get('/logout', (req, res)=>{
     if(req.session.user === null) return;
     req.session.destroy();
     res.redirect('/');
+});
+
+app.get("/profile/userimg", (req, res)=>{
+    let uploadPath = path.join(__dirname, 'public/upload');
+    let defaultImage = "users.png";
+    if(req.session != null && req.session.user.img === "") req.session.user.img = defaultImage;
+    req.session.save();
+    let imgSrc = path.join(uploadPath, req.session.user.img);
+    let imgType = mime.getType(imgSrc);
+    fs.readFile(imgSrc, async (err, data)=>{
+        res.writeHead(200, {'Content-Type' : imgType});
+        await res.write(data);
+        res.end();
+    });
 });
 
 // app.get('/stock', async (req, res)=>{
