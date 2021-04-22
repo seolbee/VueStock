@@ -12,23 +12,23 @@
                 </div>
                 <div class="input" ref="id">
                     <font-awesome-icon :icon="['far', 'id-card']"></font-awesome-icon>
-                    <input type="text" placeholder="Enter your userid" v-model="user.id">
+                    <input type="text" placeholder="Enter your userid" v-model="user.id" @focus="focusing" @blur="bulring">
                 </div>
                 <div class="input" ref="name">
                     <font-awesome-icon :icon="['fas', 'user']"></font-awesome-icon>
-                    <input type="text" placeholder="Enter your username" v-model="user.name">
+                    <input type="text" placeholder="Enter your username" v-model="user.name" @focus="focusing" @blur="bulring">
                 </div>
                 <div class="input" ref="phone">
                     <font-awesome-icon :icon="['fas', 'phone-alt']"></font-awesome-icon>
-                    <input type="text" placeholder="Enter your phone number ex) 01011112222" v-model="user.phone">
+                    <input type="text" placeholder="Enter your phone number ex) 01011112222" v-model="user.phone" @focus="focusing" @blur="bulring">
                 </div>
                 <div class="input" ref="password">
                     <font-awesome-icon :icon="['fas', 'lock']"></font-awesome-icon>
-                    <input type="password" placeholder="Enter your password" v-model="user.password" >
+                    <input type="password" placeholder="Enter your password" v-model="user.password" @focus="focusing" @blur="bulring">
                 </div>
                 <div class="input" ref="passwordConfirm">
                     <font-awesome-icon :icon="['fas', 'lock']"></font-awesome-icon>
-                    <input type="password" placeholder="Enter your password one more" v-model="user.passwordConfirm">
+                    <input type="password" placeholder="Enter your password one more" v-model="user.passwordConfirm" @focus="focusing" @blur="bulring">
                 </div>
             </div>
             <button>Sign up</button>
@@ -66,6 +66,10 @@ export default {
             }
             reader.readAsDataURL(file);
         },
+        validation(name){
+            // if(this.user.id.trim() === "") this.$refs.id.classList.add("err");
+            // else this.$refs.id.classList.remove("err");
+        },
         registe(){
             let formData = new FormData();
             formData.append('userId', this.user.id);
@@ -77,17 +81,29 @@ export default {
                 alert(data.data.msg);
                 this.$router.push('/login');
             });
+        },
+        focusing(e){
+            e.path[1].classList.add('focus');
+        },
+        bulring(e){
+            e.path[1].classList.remove('focus');
         }
     },
     watch:{
         user:{
             deep:true,
             handler(n, o){
-                if(this.user.id === ""){
-                    
-                }
+                if(n.id === "") this.$refs.id.classList.add("err");
+                else this.$refs.id.classList.remove("err");
             }
         }
+        // user:{
+        //     deep:true,
+        //     handler(n, o){
+        //         if(n.name === "") this.$refs.name.classList.add("err");
+        //         else this.$refs.name.classList.remove("err");
+        //     }
+        // }
     }
 }
 </script>

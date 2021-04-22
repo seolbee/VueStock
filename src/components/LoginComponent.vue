@@ -143,8 +143,4 @@ form > .span{
     text-align: center;
     margin-top: 10px;
 }
-
-.focus{
-    border: 2px solid #6e88e8;
-}
 </style>

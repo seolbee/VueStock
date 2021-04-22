@@ -31,6 +31,6 @@ export default {
     }
 
     .background{
-        background-color:#e9edff;
+        background-color:#e5ebff;
     }
 </style>

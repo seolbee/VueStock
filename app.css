@@ -25,3 +25,21 @@ button{
 input[type="file"]{
     display: none;
 }
+
+.focus{
+    box-shadow: 0 0 2px 1px #7e92da70 !important;
+    border: 1px solid #6e88e8 !important;
+}
+
+.err{
+    box-shadow: 0 0 2px 1px rgb(255 140 140) !important;
+    border: 1px solid #ff3838 !important;
+}
+
+.err > svg > path{
+    color: #ff4343 !important;
+}
+
+.err > input::placeholder{
+    color: rgb(255, 83, 83);
+}

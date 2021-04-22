@@ -1,7 +1,7 @@
 const request = require('request-promise-native');
 const iconv = require('iconv-lite');
 const option = {
-    uri:"https://polling.finance.naver.com/api/realtime?query=SERVICE_ITEM:068270|SERVICE_RECENT_ITEM:005930https://polling.finance.naver.com/api/realtime?query=SERVICE_ITEM:068270|SERVICE_RECENT_ITEM:005930https://polling.finance.naver.com/api/realtime?query=SERVICE_ITEM:068270|SERVICE_RECENT_ITEM:005930https://polling.finance.naver.com/api/realtime",
+    uri:"https://polling.finance.naver.com/api/realtime?query=SERVICE_ITEM:068270|SERVICE_RECENT_ITEM:005930",
     qs:{
         query : "SERVICE_ITEM:068270|SERVICE_RECENT_ITEM:005930"
     },
