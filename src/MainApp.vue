@@ -7,16 +7,19 @@
             <!-- <stock-header></stock-header> -->
             <router-view></router-view>
         </div>
+        <!-- <stock-alert></stock-alert> -->
     </div>
 </template>
 <script>
 import nav from '&/NavigatorComponent';
 import header from '&/HeaderComponent';
+import alert from '&/AlertComponent';
 export default {
     name:"MainApp",
     components:{
         'stock-nav':nav,
-        'stock-header' : header
+        'stock-header' : header,
+        'stock-alert' : alert
     }
 }
 </script>

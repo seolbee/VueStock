@@ -10,8 +10,8 @@ import RegisterComponent from '@/components/RegisterComponent';
 import ChartComponent from '@/components/ChartComponent';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
-import {faHome, faChartBar,faEllipsisV, faUser, faLock, faPhoneAlt, faChartArea} from '@fortawesome/free-solid-svg-icons';
-import {faIdCard} from '@fortawesome/free-regular-svg-icons';
+import {faHome, faChartBar,faEllipsisV, faUser, faLock, faPhoneAlt, faChartArea, faCheckCircle} from '@fortawesome/free-solid-svg-icons';
+import {faIdCard, faTimesCircle} from '@fortawesome/free-regular-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 
 import './app.css';
@@ -28,7 +28,7 @@ Vue.use(VueApexCharts);
 
 Vue.use(VueSession, sessionOption);
 
-library.add(faHome, faChartBar, faEllipsisV, faUser, faLock, faPhoneAlt, faIdCard, faChartArea);
+library.add(faHome, faChartBar, faEllipsisV, faUser, faLock, faPhoneAlt, faIdCard, faChartArea, faTimesCircle, faCheckCircle);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('apex-chart', VueApexCharts);

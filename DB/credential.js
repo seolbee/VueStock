@@ -1,7 +1,7 @@
 const credential = {
-    host:'config.thesoft.shop',
-    user:'tmf0909',
-    database:'stock',
+    host : 'db-68g0b.pub-cdb.ntruss.com',
+    user : 'tmf0909',
+    database:'yydh',
     password:'tmf@030309'
 }
 
