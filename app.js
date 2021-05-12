@@ -37,6 +37,11 @@ String.prototype.parseNum = function(){
     return parseInt(this.replace(",", ""))
 }
 
+Number.prototype.format = function(){
+    let value = "00" + this;
+    return value.substring(value.length, value.length -2);
+}
+
 
 
 const router = new Router({

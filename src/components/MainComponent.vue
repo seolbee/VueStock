@@ -8,10 +8,10 @@
                 </div>
                 <line-chart :height="height" :width="width"></line-chart> -->
                 <div class="small-chart">
-                    <apex-chart :width="(this.width / 2)" :height="200" :options="options" type="area" :series="series"/>
-                    <apex-chart :width="(this.width / 2)" :height="200" :options="options" type="area" :series="series"/>
+                    <apex-chart :width="(this.width / 2)" :height="200" :options="stock.options" type="area" :series="stock.series"/>
+                    <apex-chart :width="(this.width / 2)" :height="200" :options="stock.options" type="area" :series="stock.series"/>
                 </div>
-                <apex-chart :width="this.width" :height="this.height" type="area" :options="options" :series="series"/>
+                <apex-chart :width="this.width" :height="this.height" type="area" :options="stock.options" :series="stock.series" v-if="stock.series.data != []"/>
             </div>
             <div class="popular-box">
                 <h1>인기 주식</h1>
@@ -39,28 +39,30 @@ export default {
 
     data: function() {
         return {
-            options: {
-                chart: {
-                    id: 'vuechart-example',
-                    toolbar:{
-                        show:false
-                    }
+            stock: {
+                options: {
+                    chart: {
+                        id: 'vuechart-example',
+                        toolbar:{
+                            show:false
+                        }
+                    },
+                    colors:['#6e88e8', '#e86e88', '#e8cd6e', '#6ee8ce'],
+                    fill:{
+                        type:['gradient'],
+                        colors:['#6e88e8', '#e86e88', '#e8cd6e', '#6ee8ce']
+                    },
+                    xaxis: {
+                        categories: []
+                    },
                 },
-                colors:['#6e88e8', '#e86e88', '#e8cd6e', '#6ee8ce'],
-                fill:{
-                    type:['gradient'],
-                    colors:['#6e88e8', '#e86e88', '#e8cd6e', '#6ee8ce']
-                },
-                xaxis: {
-                    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
-                }
+                series: [{
+                    name: '',
+                    data: []
+                }]
             },
-            series: [{
-                name: 'series-1',
-                data: [30, 40, 45, 50, 49, 60, 70, 91]
-            }],
             width : 600,
-            height : 400
+            height : 400,
         }
     },
     methods:{
@@ -69,13 +71,26 @@ export default {
         },
         mainChartHeight(){
             this.height = window.innerHeight - 320;
+        },
+        getStocks(){
+            setInterval(async x=>{
+                let data = (await axios.get("/stocks")).data;
+                let prices = data.map(x=> x.price);
+                this.stock.series = [{name: data[0].name, data : prices}];
+                this.stock.options.xaxis.categories = data.map(x=> `${new Date(x.date).getHours().format()}:${new Date(x.date).getMinutes().format()}:${new Date(x.date).getSeconds().format()}`);
+            }, 10000);
+        },
+        getKos(){
+            setInterval(async x=> {
+
+            });
         }
     },
     mounted(){
         window.addEventListener('resize', this.mainChartWidth);
         window.addEventListener('resize', this.mainChartHeight);
-        this.mainChartWidth();
-        this.mainChartHeight();
+        window.resizeTo(window.innerWidth, window.innerHeight);
+        this.getStocks();
     }
 }
 </script>
@@ -86,5 +101,9 @@ export default {
 
     .small-chart{
         display: flex;
+    }
+
+    h1{
+        margin-bottom: 10px;
     }
 </style>

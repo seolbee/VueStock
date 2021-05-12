@@ -1,6 +1,6 @@
 <template>
     <transition name="show-alert">
-        <div class="alert default">
+        <div class="alert" :class="this.type">
             <div class="label">&nbsp;</div>
             <div class="main">
                 <font-awesome-icon :icon="['fas', 'check-circle']"></font-awesome-icon>
@@ -12,9 +12,10 @@
 </template>
 <script>
 export default {
+    props:['type'],
     methods:{
         close(){
-
+            
         }
     }
 }
@@ -48,21 +49,16 @@ export default {
     .alert > .main > .text-box{
         width: 100%;
         padding-left: 10px;
+        font-size: 17px;
     }
 
-    .default > .label{
-        background-color: #bcbbbc;
-    }
+    .default > .label{background-color: #bcbbbc;}
+    .default > .main{background-color: #eeeeee;}
+    .default > .main > .text-box{color: #9d9d9d;}
+    .default> .main > svg path{color: #9d9d9d;}
 
-    .default > .main{
-        background-color: #eeeeee;
-    }
-
-    .default > .main > .text-box{
-        color: #9d9d9d;
-    }
-
-    .default> .main > svg path{
-        color: #9d9d9d;
-    }
+    .error > .label{background-color: red;}
+    .error > .main{background-color: rgb(255, 238, 238);}
+    .error > .main > .text-box{color: #ff4040;}
+    .error> .main > svg path{color: #ff4040;}
 </style>
