@@ -1,9 +1,12 @@
 <template>
-    <apex-chart></apex-chart>
+    <div>
+        <div class="stock_list">
+            
+        </div>
+    </div>
 </template>
 <script>
 export default {
-    name:'ChartComponent'
     
 }
 </script>

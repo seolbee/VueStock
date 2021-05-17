@@ -1,5 +1,6 @@
 <template>
     <div id="login">
+        <stock-alert :type="this.type" :is_show="is_show" :text="text" @updateChange="updatePage"></stock-alert>
         <form @submit.prevent="login">
             <div class="title-box">
                 <h1>Welcome</h1>
@@ -28,18 +29,24 @@ export default {
             loginData:{
                 id : '',
                 password : ''
-            }
+            },
+            type:'success',
+            is_show:false,
+            text:""
         }
     },
     methods:{
         login(){
             axios.post('/login', this.loginData).then(data=>{
                 let result = data.data;
-                alert(result.msg);
                 if(result.success){
                     this.$session.set('user', result.session);
-                    this.$router.push('/');
-                } 
+                    this.type='success';
+                } else{
+                    this.type='error';
+                }
+                this.text=result.msg;
+                this.is_show = true;
             });
         },
         focusing(e){
@@ -47,6 +54,10 @@ export default {
         },
         bulring(e){
             e.path[1].classList.remove('focus');
+        },
+        updatePage({link, show}){
+            this.is_show = show;
+            this.$router.go(link);
         }
     },
     watch:{
@@ -96,7 +107,7 @@ form{
     width: 400px;
     position: relative;
     top: 50%;
-    left:50%;
+    left: 50%;
     transform:translate(-50%, -50%);
     padding: 30px;
 }

@@ -8,6 +8,7 @@ import MainComponent from '@/components/MainComponent';
 import LoginComponent from '@/components/LoginComponent';
 import RegisterComponent from '@/components/RegisterComponent';
 import ChartComponent from '@/components/ChartComponent';
+import AlertComponent from '&/AlertComponent';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faHome, faChartBar,faEllipsisV, faUser, faLock, faPhoneAlt, faChartArea, faCheckCircle} from '@fortawesome/free-solid-svg-icons';
@@ -32,6 +33,7 @@ library.add(faHome, faChartBar, faEllipsisV, faUser, faLock, faPhoneAlt, faIdCar
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('apex-chart', VueApexCharts);
+Vue.component('stock-alert', AlertComponent);
 
 String.prototype.parseNum = function(){
     return parseInt(this.replace(",", ""))
@@ -41,8 +43,6 @@ Number.prototype.format = function(){
     let value = "00" + this;
     return value.substring(value.length, value.length -2);
 }
-
-
 
 const router = new Router({
     routes:[

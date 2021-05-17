@@ -26,6 +26,10 @@ input[type="file"]{
     display: none;
 }
 
+input{
+    background: none;
+}
+
 .focus{
     box-shadow: 0 0 2px 1px #7e92da70 !important;
     border: 1px solid #6e88e8 !important;
@@ -42,4 +46,13 @@ input[type="file"]{
 
 .err > input::placeholder{
     color: rgb(255, 83, 83);
+}
+
+.show-alert-enter-active{
+    transition: all 0.5s;
+}
+
+.show-alert-enter, .show-alert-leave-to{
+    transform : translateY(-50%);
+    opacity: 0;
 }

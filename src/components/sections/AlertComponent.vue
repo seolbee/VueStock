@@ -1,36 +1,42 @@
 <template>
-    <transition name="show-alert">
-        <div class="alert" :class="this.type">
-            <div class="label">&nbsp;</div>
-            <div class="main">
-                <font-awesome-icon :icon="['fas', 'check-circle']"></font-awesome-icon>
-                <div class="text-box">로그인 완료</div>
-                <font-awesome-icon :icon="['far', 'times-circle']" @click="close"></font-awesome-icon>
+    <div class="alert-box">
+        <transition name="show-alert">
+            <div class="alert" :class="this.type" v-if="is_show">
+                <div class="label">&nbsp;</div>
+                <div class="main">
+                    <font-awesome-icon :icon="['fas', 'check-circle']"></font-awesome-icon>
+                    <div class="text-box">{{this.text}}</div>
+                    <font-awesome-icon :icon="['far', 'times-circle']" @click="close"></font-awesome-icon>
+                </div>
             </div>
-        </div>
-    </transition>
+        </transition>
+    </div>
 </template>
 <script>
 export default {
-    props:['type'],
+    props:['type', 'is_show', 'text'],
     methods:{
         close(){
-            
+            this.$emit('updateChange', {link:'/', show:false});
         }
     }
 }
 </script>
 <style scoped>
-    .alert{
+    .alert-box{
         position: fixed;
+        width: 100%;
+        height: 100px;
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+    }
+    .alert{
         width: 500px;
         display: flex;
         height: 50px;
-        margin-top: 50px;
         border-radius: 3px;
         overflow: hidden;
-        left: 50%;
-        transform: translateX(-50%);
         box-shadow: 0px 0px 3px 1px rgba(93,93,93,.1);
     }
 
@@ -61,4 +67,9 @@ export default {
     .error > .main{background-color: rgb(255, 238, 238);}
     .error > .main > .text-box{color: #ff4040;}
     .error> .main > svg path{color: #ff4040;}
+
+    .success > .label{background-color: #46c55c;}
+    .success > .main{background-color: #e8fff2;}
+    .success > .main > .text-box{color: #62d876;}
+    .success > .main > svg path{color: #62d876;}
 </style>

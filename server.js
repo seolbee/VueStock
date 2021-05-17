@@ -83,7 +83,6 @@ app.post("/login", async (req, res)=>{
         req.session.save(()=>{
             res.json({msg:"로그인 완료", success:true, session:{userid, name}});
         });
-        
     }
 });
 
@@ -108,7 +107,8 @@ app.get("/profile/userimg", (req, res)=>{
 });
 
 app.get("/stocks", async (req, res)=>{
-    let sql = "SELECT DISTINCT stock_datas.code, stock_kinds.name, stock_kinds.from_date, stock_kinds.kos, stock_kinds.list_count, stock_datas.price, stock_datas.date FROM (SELECT date, MAX(price) as price, code FROM stock_datas WHERE code = '000020' GROUP BY (UNIX_TIMESTAMP(date) DIV 300), code) AS stock_datas, stock_kinds WHERE stock_datas.code = stock_kinds.code ORDER BY stock_datas.date ASC LIMIT 100";
+    // let sql = "SELECT DISTINCT stock_datas.code, stock_kinds.name, stock_kinds.from_date, stock_kinds.kos, stock_kinds.list_count, stock_datas.price, stock_datas.date FROM (SELECT date, MAX(price) as price, code FROM stock_datas WHERE code = '000020' GROUP BY (UNIX_TIMESTAMP(date) DIV 300), code) AS stock_datas, stock_kinds WHERE stock_datas.code = stock_kinds.code ORDER BY stock_datas.date ASC LIMIT 10";
+    let sql = "SELECT * FROM stock_datas WHERE code = '000020' LIMIT 1000000";
     //SELECT date, MAX(price) FROM stocks WHERE code = '000020' GROUP BY (UNIX_TIMESTAMP(date) DIV 300)
     let result = await pool.query(sql);
     res.json(result[0]);
@@ -117,6 +117,12 @@ app.get("/stocks", async (req, res)=>{
 
 app.get("/kos", async(req, res)=>{
 
+});
+
+app.get("/stock_kinds", async(req, res)=>{
+    let sql = "SELECT * FROM stock_kinds";
+    let result = await pool.query(sql);
+    res.json(result[0]);
 });
 
 // app.get('/stock', async (req, res)=>{

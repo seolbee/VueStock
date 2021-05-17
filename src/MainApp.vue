@@ -7,19 +7,16 @@
       <!-- <stock-header></stock-header> -->
       <router-view></router-view>
     </div>
-    <stock-alert :class="'default'"></stock-alert>
   </div>
 </template>
 <script>
 import nav from "&/NavigatorComponent";
 import header from "&/HeaderComponent";
-import alert from "&/AlertComponent";
 export default {
   name: "MainApp",
   components: {
     "stock-nav": nav,
-    "stock-header": header,
-    "stock-alert": alert,
+    "stock-header": header
   },
 };
 </script>
@@ -30,7 +27,7 @@ export default {
 
 .main {
   width: 100%;
-  background-color: #fff;
+  background-color: #f1f4ff6b;
 }
 
 .background {

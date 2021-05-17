@@ -73,12 +73,12 @@ export default {
             this.height = window.innerHeight - 320;
         },
         getStocks(){
-            setInterval(async x=>{
-                let data = (await axios.get("/stocks")).data;
-                let prices = data.map(x=> x.price);
-                this.stock.series = [{name: data[0].name, data : prices}];
-                this.stock.options.xaxis.categories = data.map(x=> `${new Date(x.date).getHours().format()}:${new Date(x.date).getMinutes().format()}:${new Date(x.date).getSeconds().format()}`);
-            }, 10000);
+            // setInterval(async x=>{
+            //     let data = (await axios.get("/stocks")).data;
+            //     let prices = data.map(x=> x.price);
+            //     this.stock.series = [{name: data[0].name, data : prices}];
+            //     this.stock.options.xaxis.categories = data.map(x=> `${new Date(x.date).getHours().format()}:${new Date(x.date).getMinutes().format()}:${new Date(x.date).getSeconds().format()}`);
+            // }, 10000);
         },
         getKos(){
             setInterval(async x=> {
@@ -89,8 +89,8 @@ export default {
     mounted(){
         window.addEventListener('resize', this.mainChartWidth);
         window.addEventListener('resize', this.mainChartHeight);
-        window.resizeTo(window.innerWidth, window.innerHeight);
-        this.getStocks();
+        this.mainChartWidth();
+        this.mainChartHeight();
     }
 }
 </script>
